@@ -20,10 +20,10 @@ This tool is CLI for Firestore and Firebase Auth.
     npm i -g firebase-tools-ext
     ```
 
-1. Set path of Firebase Admin SDK service account JSON file path to the following environment variable.
+1. Set path of Firebase Admin SDK service account JSON file to the following environment variable.
 
     ```
-    export FIRESTORE_TOOL_CREDENTIAL=<path-to-credential>
+    export FIREBASE_TOOL_EXT_CREDENTIAL=<path-to-credential>
     ```
 
 ## Available Commands

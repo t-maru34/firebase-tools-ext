@@ -4,8 +4,8 @@ import * as fs from 'fs';
 let firebaseApp: admin.app.App;
 
 export const firebaseInitializer = () => {
-  const serviceAccountPath = process.env.FIRESTORE_TOOL_CREDENTIAL;
-  if (!serviceAccountPath) throw new Error('Environment variable FIRESTORE_TOOL_CREDENTIAL needed.');
+  const serviceAccountPath = process.env.FIREBASE_TOOL_EXT_CREDENTIAL;
+  if (!serviceAccountPath) throw new Error('Environment variable FIREBASE_TOOL_EXT_CREDENTIAL needed.');
 
   const saJSON = JSON.parse(Buffer.from(fs.readFileSync(serviceAccountPath, 'utf-8')).toString());
   console.log(`firestore tool target project_id: ${saJSON.project_id}`);
