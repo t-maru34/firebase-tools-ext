@@ -7,13 +7,13 @@ import * as auth from './auth';
 
 yargs
   .command<firestore.SetDocumentType>(
-    'firestore:set <doc-path> [infile]',
+    'firestore:set <firestore-document-path> [infile]',
     'Set Document to specified path',
     firestore.setDocBuilder,
     firestore.setDocHandler
   )
   .command<firestore.AddDocumentType>(
-    'firestore:add <collection-path> [infile]',
+    'firestore:add <firestore-collection-path> [infile]',
     'Add Document to collection',
     firestore.addDocBuilder,
     firestore.addDocHandler
@@ -26,4 +26,5 @@ yargs
   )
   .demandCommand(1)
   .help()
+  .wrap(yargs.terminalWidth())
   .middleware([firebaseInitializer]).argv;

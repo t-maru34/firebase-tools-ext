@@ -2,13 +2,14 @@ import * as prompts from 'prompts';
 
 export const confirm = async (msg: string): Promise<void> => {
   const ask: prompts.PromptObject = {
-    type: 'text',
-    name: 'confirm',
-    message: `${msg}\nIs this OK? (Y/n)`
+    type: 'confirm',
+    name: 'confirmed',
+    message: `${msg}\nCan you confirm? (y/N)`,
+    initial: false
   };
 
   const res = await prompts(ask);
-  if (res.confirm !== 'Y') throw new Error('Confirmation cancelled.');
+  if (res.confirmed === false) throw new Error('Aborted by user');
   return Promise.resolve();
 };
 

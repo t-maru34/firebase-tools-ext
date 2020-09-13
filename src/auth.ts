@@ -1,6 +1,6 @@
 import * as yargs from 'yargs';
 import { getAuth, cleanFirebase } from './firebase';
-import { askPassword, confirm } from './interaction';
+import { askPassword, confirm } from './interactions';
 
 export type UpdatePwArgType = { uid: string | undefined };
 

@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as yargs from 'yargs';
 
 import { getFirestore, cleanFirebase } from './firebase';
-import { confirm } from './interaction';
+import { confirm } from './interactions';
 
 export type SetDocumentType = {
   'doc-path': string | undefined;
