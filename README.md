@@ -32,6 +32,8 @@ The command firebase-ext --help lists the available commands.
 
 | Command | Description |
 | -- | -- |
+| firestore:export-doc | Export document data as JSON. |
+| firestore:export-doc | Export collection data as JSON. |
 | firestore:set | Set data to a specified Document path. Takes input from file or command-line argument. |
 | firestore:add | Add data to a specified Collection path with auto generated Document id.  Takes input from file or command-line argument.|
 | auth:update-pw | Update user's password. |
