@@ -4,7 +4,7 @@ export const confirm = async (msg: string): Promise<void> => {
   const ask: prompts.PromptObject = {
     type: 'confirm',
     name: 'confirmed',
-    message: `${msg}\nCan you confirm? (y/N)`,
+    message: `${msg} <-- Can you confirm? (y/N)`,
     initial: false
   };
 

@@ -7,6 +7,7 @@ import { writeFileSync } from '../utils';
 export type ExportCollectionType = {
   'collection-path': string | undefined;
   'output-directory': string | undefined;
+  'file-name': string | undefined;
 };
 
 const findDocs = async (collectionPath: string): Promise<Array<Record<string, any>>> => {
@@ -30,6 +31,10 @@ export const exportCollectionBuilder = (argv: yargs.Argv): yargs.Argv<ExportColl
     .positional('output-directory', {
       type: 'string',
       desc: 'JSON data export directory path'
+    })
+    .options('file-name', {
+      type: 'string',
+      desc: 'File name of exported json file'
     });
 };
 
@@ -37,6 +42,7 @@ export const exportCollectionHandler = async (args: yargs.Arguments<ExportCollec
   try {
     const collectionPath = args['collection-path'];
     const outputDir = args['output-directory'];
+    const specifiedFileName = args['file-name'];
 
     if (!collectionPath) throw new Error('invalid input params: collection-path');
     if (!outputDir) throw new Error('invalid input params: output-directory');
@@ -45,7 +51,9 @@ export const exportCollectionHandler = async (args: yargs.Arguments<ExportCollec
 
     const docs = await findDocs(collectionPath);
 
-    const fileName = `${collectionPath}.json`;
+    await confirm(`${docs.length} documents will be exported.`);
+
+    const fileName = specifiedFileName || `${collectionPath.replace('/', '-')}.json`;
     const exportedPath = writeFileSync(outputDir, fileName, docs);
 
     console.log(`Collection export succeeded!!! file path: ${exportedPath}`);

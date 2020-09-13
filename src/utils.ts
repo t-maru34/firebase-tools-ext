@@ -17,7 +17,6 @@ export const writeFileSync = (
   const absoluteDirPath = createDirectoryIfNeeded(directoryPath);
   const filePath = `${absoluteDirPath}/${fileName}`;
   const jsonString =  JSON.stringify(data);
-  console.log(`## sj: ${jsonString}`)
   fsWriteFileSync(filePath, jsonString, { encoding: 'utf8' });
   return filePath;
 };

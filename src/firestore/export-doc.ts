@@ -7,6 +7,7 @@ import { writeFileSync } from '../utils';
 export type ExportDocumentType = {
   'document-path': string | undefined;
   'output-directory': string | undefined;
+  'file-name': string | undefined;
 };
 
 interface FindResult {
@@ -35,6 +36,10 @@ export const exportDocBuilder = (argv: yargs.Argv): yargs.Argv<ExportDocumentTyp
     .positional('output-directory', {
       type: 'string',
       desc: 'JSON data export directory path'
+    })
+    .options('file-name', {
+      type: 'string',
+      desc: 'File name of exported json file'
     });
 };
 
@@ -42,6 +47,7 @@ export const exportDocHandler = async (args: yargs.Arguments<ExportDocumentType>
   try {
     const docPath = args['document-path'];
     const outputDir = args['output-directory'];
+    const specifiedFileName = args['file-name'];
 
     if (!docPath) throw new Error('invalid input params: document-path');
     if (!outputDir) throw new Error('invalid input params: output-path');
@@ -50,7 +56,7 @@ export const exportDocHandler = async (args: yargs.Arguments<ExportDocumentType>
 
     const doc = await findDocument(docPath);
 
-    const fileName = `${docPath}-${doc.id}.json`;
+    const fileName = specifiedFileName || `${docPath.replace('/', '-')}.json`;
     const exportedPath = writeFileSync(outputDir, fileName, doc.data);
 
     console.log(`Document export succeeded!!! file path: ${exportedPath}`);
