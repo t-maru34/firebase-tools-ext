@@ -12,7 +12,7 @@
   "author": "t-maru34",
   "license": "ISC",
   "dependencies": {
-    "firebase-admin": "^9.1.1",
+    "firebase-admin": "^11.4.1",
     "prompts": "^2.3.2",
     "yargs": "^16.0.3"
   },
